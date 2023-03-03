@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+<style>
+    .container {
+      display: flex;
+      flex-direction: column;
+    }
+
+
+    select {
+        color: red;
+        min-height: 30px;
+        min-width: 118px;
+        border: 3px solid blue;
+    }
+
+    option {
+        color: green;
+        }
+
+    h4 {
+        width: 118px;
+        text-align: center;
+        display: block;
+        margin-bottom: 3px;
+        }
+
+</style>
+
+<!--surround the select box with a "custom-select" DIV element. Remember to set the width:-->
+<div class="container">
+{% for obj in object %}
+  {{ obj.menu.title }}
+<div class="custom-select" style="width:200px;">
+    <h4>{{ obj.title }}</h4>
+  <select onchange="window.location.href=this.options[this.selectedIndex].value">
+    {% for link in obj.menu.all %}
+    <option value="{{ link.url }}">{{ link.title }}</option>
+    {% endfor %}
+
+  </select>
+</div>
+{% endfor %}
+</div>
+
+{% for obj in object %}
+  <h1>{{ obj.menu.url }}</h1>
+{% endfor %}
+
+</body>
+</html>
